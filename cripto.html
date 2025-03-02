@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Инвестиция TM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Блокируем прокрутку */
+        html, body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: url('dubai.png') no-repeat center center/cover;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; background: black; }
+            100% { opacity: 1; }
+        }
+
+        #game-frame {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        h1 {
+            font-weight: bold;
+            font-size: 12.5vh;
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .button {
+            width: 60%;
+            padding: 15px;
+            background: #007BFF;
+            color: white;
+            font-size: 18px;
+            text-align: left;
+            border: none;
+            cursor: pointer;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .options {
+            display: none;
+            flex-direction: column;
+            width: 60%;
+            padding-left: 20px;
+        }
+
+        .option {
+            padding: 5px 0;
+            background: #f0f0f0;
+            margin: 3px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .arrow {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Фиксированный серый прямоугольник внизу экрана */
+        .footer-bar {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1cm;
+            background: rgba(128, 128, 128, 0.5);
+            border-radius: 10px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-frame">
+        <h1>Инвестиция TM</h1>
+
+        <!-- Кнопки -->
+        <button class="button" onclick="toggleOptions(this)">
+            Криптовалюта <span class="arrow">></span>
+        </button>
+        <div class="options">
+            <div class="option">Bitcoin</div>
+            <div class="option">Ethereum</div>
+            <div class="option">Ripple</div>
+            <div class="option">Litecoin</div>
+            <div class="option">Cardano</div>
+            <div class="option">Solana</div>
+        </div>
+
+        <button class="button" onclick="toggleOptions(this)">
+            Акции <span class="arrow">></span>
+        </button>
+        <div class="options">
+            <div class="option">Tesla</div>
+            <div class="option">Apple</div>
+            <div class="option">Google</div>
+            <div class="option">Amazon</div>
+            <div class="option">Microsoft</div>
+            <div class="option">Meta</div>
+        </div>
+
+        <button class="button" onclick="toggleOptions(this)">
+            Квартиры <span class="arrow">></span>
+        </button>
+        <div class="options">
+            <div class="option">Москва</div>
+            <div class="option">Лондон</div>
+            <div class="option">Нью-Йорк</div>
+            <div class="option">Париж</div>
+            <div class="option">Токио</div>
+            <div class="option">Дубай</div>
+        </div>
+
+        <button class="button" onclick="toggleOptions(this)">
+            Картины <span class="arrow">></span>
+        </button>
+        <div class="options">
+            <div class="option">Моне</div>
+            <div class="option">Ван Гог</div>
+            <div class="option">Пикассо</div>
+            <div class="option">Рембрандт</div>
+            <div class="option">Да Винчи</div>
+            <div class="option">Дали</div>
+        </div>
+
+        <button class="button" onclick="toggleOptions(this)">
+            Бизнесы <span class="arrow">></span>
+        </button>
+        <div class="options">
+            <div class="option">Ресторан</div>
+            <div class="option">Стартап</div>
+            <div class="option">Онлайн-магазин</div>
+            <div class="option">Франшиза</div>
+            <div class="option">IT-компания</div>
+            <div class="option">Маркетинговое агентство</div>
+        </div>
+    </div>
+
+    <div class="footer-bar"></div>
+
+    <script>
+        function toggleOptions(button) {
+            const options = button.nextElementSibling;
+            const arrow = button.querySelector('.arrow');
+
+            if (options.style.display === "flex") {
+                options.style.display = "none";
+                arrow.textContent = '>';
+            } else {
+                options.style.display = "flex";
+                arrow.textContent = '↓';
+            }
+        }
+    </script>
+</body>
+</html>
+
