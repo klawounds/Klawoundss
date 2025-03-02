@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бизнес</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Контейнер для игры, занимающий весь экран */
+        #game-frame {
+            width: 100vw;
+            height: 100vh;
+            border: 10px solid black; /* Рамка вокруг игры */
+            border-radius: 15px;
+            position: relative;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            background: url('fon.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        #game-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: black;
+            margin-top: 10px;
+        }
+
+        #card {
+            width: 90%;
+            height: 25%;
+            background-color: #0066cc;
+            border-radius: 10px;
+            position: absolute;
+            top: 25%;
+            padding: 15px;
+            color: white;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #balance {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+        }
+
+        #balance-amount {
+            font-weight: normal;
+            color: white;
+        }
+
+        #bottom-bar {
+            width: 90%;
+            height: 50px;
+            background: rgba(128, 128, 128, 0.7);
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .icon-button img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Бонусное сообщение */
+        #bonus-message {
+            position: absolute;
+            width: 90%;
+            background-color: green;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            bottom: 30%;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid black;
+        }
+
+        #claim-button {
+            background-color: yellow;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* Анимация +10 000 $ */
+        #bonus-animation {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 2s ease-out;
+            border: 2px solid black;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        /* Плавный черный экран */
+        #black-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 10;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="black-screen"></div>
+    <div id="game-frame">
+        <div id="game-title">Business<br>Klawounds</div>
+        <div id="card">
+            <div id="card-number">****   <span id="last-four"></span></div>
+
+            <div id="balance">Баланс: <span id="balance-amount">0</span> $</div>
+            <div id="card-footer">
+                <div>VISA</div>
+                <div>12/25</div>
+            </div>
+        </div>
+        <div id="bottom-bar">
+            <button class="icon-button" id="office-button"><img src="1.png" alt="Здание"></button>
+            <button class="icon-button"><img src="2.png" alt="Дом"></button>
+            <button class="icon-button" id="crypto-button"><img src="3.png" alt="Биткоин"></button>
+        </div>
+        <div id="bonus-message">
+            Business Klawounds предоставляет 10 000 $ начинающим пользователям
+            <button id="claim-button">Забрать</button>
+        </div>
+        <div id="bonus-animation">+10 000 $</div>
+    </div>
+
+    <script>
+        function generateRandomCardNumber() {
+            const lastFour = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('last-four').innerText = lastFour;
+        }
+
+        function transitionToPage(url) {
+            let blackScreen = document.getElementById("black-screen");
+            blackScreen.style.display = "block";
+            setTimeout(() => {
+                blackScreen.style.opacity = "1";
+            }, 10);
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1000);
+        }
+
+        document.getElementById("office-button").addEventListener("click", function() {
+            transitionToPage("ofic.html");
+        });
+
+        document.getElementById("crypto-button").addEventListener("click", function() {
+            transitionToPage("cripto.html");
+        });
+
+        document.getElementById("claim-button").addEventListener("click", function() {
+            document.getElementById("bonus-message").style.display = "none";
+            let balanceElement = document.getElementById("balance-amount");
+            let currentBalance = parseFloat(balanceElement.innerText);
+            balanceElement.innerText = (currentBalance + 10000).toFixed(2);
+            
+            let bonusAnimation = document.getElementById("bonus-animation");
+            bonusAnimation.style.opacity = "1";
+            setTimeout(() => {
+                bonusAnimation.style.opacity = "0";
+            }, 2000);
+        });
+
+        generateRandomCardNumber();
+    </script>
+</body>
+</html>
