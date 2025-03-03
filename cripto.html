@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Инвестиция ТМ</title> <!-- Заголовок страницы, который виден в верхней части браузера -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: url('tokio_morning.png') no-repeat center center/cover;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; background: black; }
+            100% { opacity: 1; }
+        }
+
+        #game-frame {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .button {
+            width: 60%;
+            height: 2cm;
+            padding: 15px;
+            background: #007BFF;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+        }
+
+        .footer-bar {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1cm;
+            background: rgba(128, 128, 128, 0.5);
+            border-radius: 10px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .image-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            height: 2cm;
+            background: transparent;  /* Убираем фон */
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .image-button img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Новый стиль для заголовка вверху */
+        #header-title {
+            font-weight: bold;
+            font-size: 6.25vh;
+            text-align: center;
+            color: white;
+            position: absolute;
+            top: 10px; /* Заголовок на 10px ниже верхнего края */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="game-frame">
+        <!-- Новый заголовок -->
+        <div id="header-title">Инвестиция ТМ</div> <!-- Заголовок, который будет отображаться вверху страницы -->
+    </div>
+
+    <div class="footer-bar">
+        <button class="image-button" id="home-button"><img src="2.png" alt="Дом"></button>
+        <button class="image-button" id="office-button"><img src="1.png" alt="Офис"></button>
+        <button class="image-button" id="bitcoin-button"><img src="3.png" alt="Биткоин"></button>
+    </div>
+
+    <script>
+        // Функция для перехода на другую страницу
+        function transitionToPage(url) {
+            window.location.href = url;
+        }
+
+        // Обработчик для кнопки "Дом"
+        document.getElementById("home-button").addEventListener("click", function() {
+            transitionToPage("index.html");
+        });
+
+        // Обработчик для кнопки "Офис"
+        document.getElementById("office-button").addEventListener("click", function() {
+            transitionToPage("ofic.html");
+        });
+
+        // Обработчик для кнопки "Биткоин" (добавить соответствующую логику, если нужно)
+        document.getElementById("bitcoin-button").addEventListener("click", function() {
+            // Добавить переход для Биткоина, если необходимо
+            alert("Биткоин кнопка нажата!");
+        });
+    </script>
+</body>
+</html>
